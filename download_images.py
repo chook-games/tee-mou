@@ -1,8 +1,8 @@
 import urllib.request
+import urllib.parse
 import os
-import random
 
-# Product images - using picsum.photos with seeds for consistent images
+# Product images - using picsum.photos for real, beautiful photos
 products = {
     "jacket": "https://picsum.photos/seed/jacket/400/400",
     "sofa": "https://picsum.photos/seed/sofa/400/400",
@@ -26,9 +26,9 @@ categories = {
 }
 
 banners = {
-    "banner1": "https://picsum.photos/seed/banner1/1200/400",
-    "banner2": "https://picsum.photos/seed/banner2/1200/400",
-    "banner3": "https://picsum.photos/seed/banner3/1200/400",
+    "banner1": "https://picsum.photos/seed/megadeals/1200/400",
+    "banner2": "https://picsum.photos/seed/map/1200/400",
+    "banner3": "https://picsum.photos/seed/newarrivals/1200/400",
 }
 
 def download_images(folder, images):
@@ -39,7 +39,7 @@ def download_images(folder, images):
             try:
                 print(f"Downloading {name}...")
                 req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-                with urllib.request.urlopen(req, timeout=10) as response:
+                with urllib.request.urlopen(req, timeout=15) as response:
                     with open(filepath, 'wb') as f:
                         f.write(response.read())
                 print(f"  ✓ {name}.jpg saved!")
