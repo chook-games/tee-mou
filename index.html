@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ο Tee mou, ti agorasa pali - Αγόρασε ό,τι ονειρεύεσαι!</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        🚚 ΔΩΡΕΑΝ ΜΕΤΑΦΟΡΙΚΑ ΓΙΑ ΠΑΡΑΓΓΕΛΙΕΣ ΑΝΩ ΤΩΝ €50 | ⏰ ΠΡΟΛΑΒΕ ΤΙΣ ΕΚΠΤΩΣΕΙΣ
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                🛒 Ο Tee mou
+                <span class="logo-sub">ti agorasa pali</span>
+            </a>
+            <div class="search-bar">
+                <input type="text" placeholder="Αναζήτησε προϊόντα..." id="search-input">
+                <button onclick="alert('🔍 Βρέθηκαν 1,247 αποτελέσματα!')">🔍 Αναζήτηση</button>
+            </div>
+            <div class="header-actions">
+                <a href="login.html" class="header-btn" id="user-btn">
+                    <span class="icon">👤</span>
+                    <span>Είσοδος</span>
+                </a>
+                <a href="orders.html" class="header-btn">
+                    <span class="icon">📦</span>
+                    <span>Παραγγελίες</span>
+                </a>
+                <a href="cart.html" class="header-btn">
+                    <span class="icon">🛒</span>
+                    <span>Καλάθι</span>
+                    <span class="cart-count" style="display:none;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html" class="active">Αρχική</a></li>
+            <li><a href="all-products.html?category=fashion">👗 Μόδα</a></li>
+            <li><a href="all-products.html?category=home">🏠 Σπίτι</a></li>
+            <li><a href="all-products.html?category=tech">💻 Τεχνολογία</a></li>
+            <li><a href="all-products.html?category=tools">🔧 Εργαλεία</a></li>
+            <li><a href="all-products.html?category=gadgets">🎮 Gadgets</a></li>
+            <li><a href="all-products.html?category=sports">🏃 Αθλητικά</a></li>
+            <li><a href="all-products.html?category=beauty">💄 Ομορφιά</a></li>
+            <li><a href="all-products.html?category=toys">🧸 Παιχνίδια</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+        <img src="images/banners/banner1.jpg" alt="MEGA DEALS">
+        <div class="hero-overlay">
+            <h1>🔥 MEGA ΕΚΠΤΩΣΕΙΣ</h1>
+            <p>Έως -96% σε όλα τα προϊόντα! Πρόλαβε τις προσφορές πριν τελειώσουν!</p>
+            <a href="all-products.html" class="btn">🛍️ Αγόρασε τώρα</a>
+        </div>
+    </div>
+
+    <!-- Flash Sale Timer -->
+    <div class="flash-sale">
+        <div class="flash-header">
+            <h2>⚡ Flash Sale</h2>
+            <div class="flash-timer">
+                <span>Λήγει σε:</span>
+                <span class="timer-unit">00</span>
+                <span class="timer-sep">:</span>
+                <span class="timer-unit">00</span>
+                <span class="timer-sep">:</span>
+                <span class="timer-unit">00</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="product-grid">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="categories-section">
+        <h2 class="section-title">📂 Κατηγορίες</h2>
+        <div class="categories-grid" id="categories-grid">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banner 2 -->
+    <div class="hero-banner" style="margin-top:30px;">
+        <img src="images/banners/banner3.jpg" alt="NEW ARRIVALS">
+        <div class="hero-overlay" style="background: linear-gradient(135deg, rgba(33,150,243,0.8), rgba(156,39,176,0.6));">
+            <h1>🚀 ΝΕΑ ΑΦΙΞΕΙΣ</h1>
+            <p>Τα πιο hot προϊόντα της σεζόν είναι εδώ! Πρωτοποριακή τεχνολογία σε τιμές που δεν πιστεύεις!</p>
+            <a href="all-products.html" class="btn">🔥 Δες τα νέα</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+                <h3>🛒 Ο Tee mou</h3>
+                <p style="font-size:13px;">Η πιο απίστευτη εμπειρία αγορών! Αγόρασε ό,τι ονειρεύεσαι σε τιμές που δεν πιστεύεις!</p>
+            </div>
+            <div>
+                <h3>Εξυπηρέτηση</h3>
+                <ul>
+                    <li>📞 24/7 Υποστήριξη</li>
+                    <li>📧 info@teemou.gr</li>
+                    <li>💬 Live Chat</li>
+                    <li>❓ Συχνές Ερωτήσεις</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Πολιτικές</h3>
+                <ul>
+                    <li>📦 Πολιτική Επιστροφών</li>
+                    <li>🔒 Ασφάλεια Συναλλαγών</li>
+                    <li>📋 Όροι Χρήσης</li>
+                    <li>🛡️ Εγγύηση 100%</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Ακολούθησέ μας</h3>
+                <ul>
+                    <li>📱 TikTok: @teemou</li>
+                    <li>📸 Instagram: @teemou</li>
+                    <li>▶️ YouTube: TeeMou</li>
+                    <li>💬 Discord: TeeMou</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Ο Tee mou, ti agorasa pali - Με επιφύλαξη παντός δικαιώματος (όχι, δεν είναι αληθινό 😉)</p>
+            <p style="margin-top:5px;">💡 Ψεύτικο κατάστημα για να σταματήσεις να αγοράζεις βλακείες!</p>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/promos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

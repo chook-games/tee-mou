@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ολοκλήρωση Αγοράς - Ο Tee mou</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="announcement-bar">🚚 ΔΩΡΕΑΝ ΜΕΤΑΦΟΡΙΚΑ ΓΙΑ ΠΑΡΑΓΓΕΛΙΕΣ ΑΝΩ ΤΩΝ €50</div>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">🛒 Ο Tee mou<span class="logo-sub">ti agorasa pali</span></a>
+            <div class="header-actions" style="margin-left:auto;">
+                <a href="cart.html" class="header-btn"><span class="icon">🛒</span><span>Καλάθι</span><span class="cart-count" style="display:none;">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-container" style="max-width:600px;margin:0 auto;">
+        <h1 style="font-size:28px;font-weight:800;margin-bottom:30px;text-align:center;">✅ Ολοκλήρωση Αγοράς</h1>
+        
+        <div id="checkout-content">
+            <div class="loading-spinner"><div class="spinner"></div></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div><h3>🛒 Ο Tee mou</h3><p style="font-size:13px;">Η πιο απίστευτη εμπειρία αγορών!</p></div>
+            <div><h3>Εξυπηρέτηση</h3><ul><li>📞 24/7 Υποστήριξη</li><li>📧 info@teemou.gr</li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2026 Ο Tee mou, ti agorasa pali - Ψεύτικο κατάστημα 😉</p></div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/promos.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = Store.getUser();
+            const cart = Store.getCart();
+            const container = document.getElementById('checkout-content');
+            
+            if (!user) {
+                window.location.href = 'login.html?redirect=checkout.html';
+                return;
+            }
+            
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">🛒</div>
+                        <h2>Το καλάθι σου είναι άδειο</h2>
+                        <a href="index.html" class="btn-primary">🛍️ Συνέχισε τις αγορές</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            let subtotal = 0;
+            let itemsHtml = '';
+            
+            cart.forEach(item => {
+                const product = products.find(p => p.id === item.productId);
+                if (!product) return;
+                const itemTotal = product.price * item.quantity;
+                subtotal += itemTotal;
+                itemsHtml += `
+                    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;">
+                        <span>${product.name} x${item.quantity}</span>
+                        <span style="font-weight:600;">${Promos.formatPrice(itemTotal)}</span>
+                    </div>
+                `;
+            });
+            
+            const shipping = subtotal >= 50 ? 0 : 3.99;
+            const total = subtotal + shipping;
+            
+            container.innerHTML = `
+                <div class="profile-card" style="max-width:100%;">
+                    <h3 style="margin-bottom:15px;">📦 Στοιχεία Παράδοσης</h3>
+                    <div style="background:var(--gray-100);padding:15px;border-radius:var(--radius-sm);margin-bottom:20px;">
+                        <p><strong>${user.name}</strong></p>
+                        <p>${user.address}</p>
+                        <p>${user.phone}</p>
+                        <p>${user.email}</p>
+                    </div>
+                    
+                    <h3 style="margin-bottom:15px;">🛍️ Προϊόντα</h3>
+                    <div style="border-bottom:1px solid var(--gray-200);margin-bottom:15px;">
+                        ${itemsHtml}
+                    </div>
+                    
+                    <div style="margin-bottom:20px;">
+                        <div style="display:flex;justify-content:space-between;padding:5px 0;">
+                            <span>Υποσύνολο</span>
+                            <span>${Promos.formatPrice(subtotal)}</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;padding:5px 0;">
+                            <span>Μεταφορικά</span>
+                            <span>${shipping === 0 ? '🚚 ΔΩΡΕΑΝ' : Promos.formatPrice(shipping)}</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:24px;font-weight:800;color:var(--accent);border-top:2px solid var(--gray-200);margin-top:10px;">
+                            <span>Σύνολο</span>
+                            <span>${Promos.formatPrice(total)}</span>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-bottom:15px;">💳 Τρόπος Πληρωμής</h3>
+                    <div style="background:var(--gray-100);padding:15px;border-radius:var(--radius-sm);margin-bottom:20px;text-align:center;">
+                        <span style="font-size:40px;">💳</span>
+                        <p style="font-size:14px;color:var(--gray-500);margin-top:5px;">Αντικαταβολή - Πληρωμή κατά την παράδοση</p>
+                    </div>
+                    
+                    <button class="btn-primary" style="width:100%;font-size:20px;padding:18px;" onclick="placeOrder()">
+                        ✅ Επιβεβαίωση Αγοράς - ${Promos.formatPrice(total)}
+                    </button>
+                    <p style="text-align:center;margin-top:10px;font-size:12px;color:var(--gray-500);">
+                        ⚠️ Ψεύτικη αγορά - Κανένα πραγματικό ποσό θα χρεωθεί!
+                    </p>
+                </div>
+            `;
+        });
+        
+        function placeOrder() {
+            const cart = Store.getCart();
+            const orderId = Date.now();
+            
+            const order = {
+                id: orderId,
+                date: new Date().toISOString(),
+                items: cart.map(item => {
+                    const product = products.find(p => p.id === item.productId);
+                    return {
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        quantity: item.quantity
+                    };
+                }),
+                total: cart.reduce((sum, item) => {
+                    const product = products.find(p => p.id === item.productId);
+                    return sum + (product ? product.price * item.quantity : 0);
+                }, 0)
+            };
+            
+            // Add shipping if under 50
+            if (order.total < 50) order.total += 3.99;
+            
+            Store.addOrder(order);
+            Store.setCart([]);
+            
+            // Show success
+            const container = document.getElementById('checkout-content');
+            container.innerHTML = `
+                <div class="profile-card" style="max-width:100%;text-align:center;">
+                    <div style="font-size:80px;margin-bottom:20px;">🎉</div>
+                    <h2 style="font-size:28px;font-weight:800;color:var(--success);margin-bottom:10px;">ΑΓΟΡΑ ΕΠΙΤΥΧΗΣ!</h2>
+                    <p style="font-size:16px;color:var(--gray-600);margin-bottom:5px;">Η παραγγελία σου καταχωρήθηκε με επιτυχία!</p>
+                    <p style="font-size:14px;color:var(--gray-500);margin-bottom:20px;">Tracking #TEE${String(orderId).padStart(6, '0')}</p>
+                    <div style="background:#fff0e6;padding:15px;border-radius:var(--radius-sm);margin-bottom:20px;">
+                        <p style="font-size:14px;">📦 Μπες στο <strong>Live Tracking</strong> για να δεις την εξέλιξη της παραγγελίας σου!</p>
+                    </div>
+                    <div style="display:flex;gap:10px;justify-content:center;">
+                        <a href="tracking.html?id=${orderId}" class="btn-primary">📦 Live Tracking</a>
+                        <a href="index.html" class="btn-secondary">🏠 Αρχική</a>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
