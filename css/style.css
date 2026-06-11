@@ -76,6 +76,204 @@ img {
     50% { opacity: 0.9; }
 }
 
+/* === Hamburger Menu Button === */
+.hamburger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    transition: var(--transition);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1001;
+}
+
+.hamburger-btn:hover {
+    background: var(--gray-100);
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 22px;
+    height: 2.5px;
+    background: var(--gray-700);
+    border-radius: 2px;
+    transition: var(--transition);
+    transform-origin: center;
+}
+
+.hamburger-btn.active span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* === Side Menu Overlay === */
+.side-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.side-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* === Side Menu === */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    max-width: 85vw;
+    height: 100vh;
+    background: var(--white);
+    z-index: 999;
+    box-shadow: 2px 0 20px rgba(0,0,0,0.15);
+    transition: left 0.3s ease;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.side-menu-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.side-menu-header .logo-icon {
+    font-size: 32px;
+}
+
+.side-menu-header .logo-text {
+    font-size: 18px;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.side-menu-header .logo-sub {
+    font-size: 10px;
+    color: var(--gray-500);
+    display: block;
+}
+
+.side-menu-nav {
+    flex: 1;
+    padding: 12px;
+}
+
+.side-menu-nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gray-700);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.side-menu-nav a:hover {
+    background: var(--gray-100);
+    color: var(--primary);
+}
+
+.side-menu-nav a.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* Category sub-list in side menu */
+.side-category-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gray-700);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+}
+
+.side-category-toggle:hover {
+    background: var(--gray-100);
+    color: var(--primary);
+}
+
+.side-category-toggle .arrow {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+    font-size: 12px;
+}
+
+.side-category-toggle.open .arrow {
+    transform: rotate(180deg);
+}
+
+.side-sub-list {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding-left: 12px;
+}
+
+.side-sub-list.open {
+    max-height: 500px;
+}
+
+.side-sub-list a {
+    padding: 10px 16px 10px 28px;
+    font-size: 14px;
+}
+
+.side-menu-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--gray-200);
+    font-size: 12px;
+    color: var(--gray-500);
+    text-align: center;
+}
+
 /* === Header / Navbar === */
 .header {
     background: var(--white);
@@ -91,7 +289,7 @@ img {
     padding: 12px 20px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
 }
 
 .logo {
@@ -104,6 +302,7 @@ img {
     white-space: nowrap;
     letter-spacing: -0.5px;
 }
+
 
 .logo-sub {
     font-size: 10px;

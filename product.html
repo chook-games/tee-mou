@@ -12,6 +12,11 @@
 
     <header class="header">
         <div class="header-inner">
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="Μενού">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <a href="index.html" class="logo">🛒 Ο Tee mou<span class="logo-sub">ti agorasa pali</span></a>
             <div class="search-bar">
                 <input type="text" placeholder="Αναζήτησε προϊόντα...">
@@ -31,26 +36,39 @@
         </div>
     </header>
 
-    <nav class="main-nav">
-        <ul>
-            <li><a href="index.html">Αρχική</a></li>
-            <li class="nav-dropdown">
-                <button class="nav-dropdown-btn">📂 Κατηγορίες ▾</button>
-                <div class="nav-dropdown-menu">
-                    <a href="all-products.html?category=fashion">👗 Μόδα</a>
-                    <a href="all-products.html?category=home">🏠 Σπίτι</a>
-                    <a href="all-products.html?category=tech">💻 Τεχνολογία</a>
-                    <a href="all-products.html?category=tools">🔧 Εργαλεία</a>
-                    <a href="all-products.html?category=gadgets">🎮 Gadgets</a>
-                    <a href="all-products.html?category=sports">🏃 Αθλητικά</a>
-                    <a href="all-products.html?category=beauty">💄 Ομορφιά</a>
-                    <a href="all-products.html?category=toys">🧸 Παιχνίδια</a>
-                </div>
-            </li>
-            <li><a href="all-products.html">Όλα τα Προϊόντα</a></li>
-            <li><a href="categories.html">📂 Κατηγορίες</a></li>
-        </ul>
-    </nav>
+    <!-- Side Menu Overlay -->
+    <div class="side-overlay" id="side-overlay"></div>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="side-menu">
+        <div class="side-menu-header">
+            <span class="logo-icon">🛒</span>
+            <div>
+                <div class="logo-text">Ο Tee mou</div>
+                <span class="logo-sub">ti agorasa pali</span>
+            </div>
+        </div>
+        <nav class="side-menu-nav">
+            <a href="index.html">🏠 Αρχική</a>
+            <a href="all-products.html">📦 Όλα τα Προϊόντα</a>
+            <button class="side-category-toggle" id="side-category-toggle">
+                📂 Κατηγορίες <span class="arrow">▾</span>
+            </button>
+            <div class="side-sub-list" id="side-sub-list">
+                <a href="all-products.html?category=fashion">👗 Μόδα</a>
+                <a href="all-products.html?category=home">🏠 Σπίτι</a>
+                <a href="all-products.html?category=tech">💻 Τεχνολογία</a>
+                <a href="all-products.html?category=tools">🔧 Εργαλεία</a>
+                <a href="all-products.html?category=gadgets">🎮 Gadgets</a>
+                <a href="all-products.html?category=sports">🏃 Αθλητικά</a>
+                <a href="all-products.html?category=beauty">💄 Ομορφιά</a>
+                <a href="all-products.html?category=toys">🧸 Παιχνίδια</a>
+            </div>
+            <a href="categories.html">📂 Ξεχωριστή σελίδα Κατηγοριών</a>
+        </nav>
+        <div class="side-menu-footer">© 2026 Ο Tee mou</div>
+    </div>
+
 
 
     <div class="page-container">

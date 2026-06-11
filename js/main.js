@@ -2,27 +2,62 @@
 // MAIN - Global functions & initialization
 // ============================================================
 
-// Dropdown toggle for categories (works on mobile)
-document.addEventListener('DOMContentLoaded', function() {
-    // Click-based dropdown toggle
-    document.querySelectorAll('.nav-dropdown-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const dropdown = this.closest('.nav-dropdown');
-            // Close all other dropdowns
-            document.querySelectorAll('.nav-dropdown.open').forEach(d => {
-                if (d !== dropdown) d.classList.remove('open');
-            });
-            dropdown.classList.toggle('open');
-        });
+// Hamburger menu toggle
+function initHamburgerMenu() {
+    const hamburger = document.getElementById('hamburger-btn');
+    const sideMenu = document.getElementById('side-menu');
+    const overlay = document.getElementById('side-overlay');
+    const categoryToggle = document.getElementById('side-category-toggle');
+    const subList = document.getElementById('side-sub-list');
+    
+    if (!hamburger || !sideMenu || !overlay) return;
+    
+    function openMenu() {
+        hamburger.classList.add('active');
+        sideMenu.classList.add('open');
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMenu() {
+        hamburger.classList.remove('active');
+        sideMenu.classList.remove('open');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+        // Close sub-list too
+        if (categoryToggle) categoryToggle.classList.remove('open');
+        if (subList) subList.classList.remove('open');
+    }
+    
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (sideMenu.classList.contains('open')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
     });
     
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function() {
-        document.querySelectorAll('.nav-dropdown.open').forEach(d => {
-            d.classList.remove('open');
+    overlay.addEventListener('click', closeMenu);
+    
+    // Category toggle in side menu
+    if (categoryToggle && subList) {
+        categoryToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('open');
+            subList.classList.toggle('open');
         });
+    }
+    
+    // Close menu when clicking a link
+    sideMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
     });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize hamburger menu
+    initHamburgerMenu();
     
     // Update cart count
     Store.updateCartCount();
@@ -76,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loadAllProducts();
     }
 });
+
 
 // Update user display in header
 function updateUserDisplay() {
