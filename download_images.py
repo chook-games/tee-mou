@@ -12,6 +12,16 @@ products = {
     "shoes": "https://picsum.photos/seed/shoes/400/400",
     "cream": "https://picsum.photos/seed/cream/400/400",
     "robot": "https://picsum.photos/seed/robot/400/400",
+    "babel": "https://picsum.photos/seed/babel/400/400",
+    "nanopod": "https://picsum.photos/seed/nanopod/400/400",
+    "teleport": "https://picsum.photos/seed/teleport/400/400",
+    "pants": "https://picsum.photos/seed/pants/400/400",
+    "pen": "https://picsum.photos/seed/pen/400/400",
+    "dream": "https://picsum.photos/seed/dream/400/400",
+    "watch": "https://picsum.photos/seed/watch/400/400",
+    "solar": "https://picsum.photos/seed/solar/400/400",
+    "gum": "https://picsum.photos/seed/gum/400/400",
+    "blanket": "https://picsum.photos/seed/blanket/400/400",
 }
 
 categories = {
