@@ -285,8 +285,16 @@ img {
     margin-top: 5px;
 }
 
-.nav-dropdown:hover .nav-dropdown-menu {
+/* Dropdown click-based (works on mobile too) */
+.nav-dropdown.open .nav-dropdown-menu {
     display: block;
+}
+
+/* Also keep hover for desktop */
+@media (hover: hover) {
+    .nav-dropdown:hover .nav-dropdown-menu {
+        display: block;
+    }
 }
 
 .nav-dropdown-menu a {

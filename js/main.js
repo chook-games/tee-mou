@@ -2,8 +2,28 @@
 // MAIN - Global functions & initialization
 // ============================================================
 
-// Initialize everything on page load
+// Dropdown toggle for categories (works on mobile)
 document.addEventListener('DOMContentLoaded', function() {
+    // Click-based dropdown toggle
+    document.querySelectorAll('.nav-dropdown-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const dropdown = this.closest('.nav-dropdown');
+            // Close all other dropdowns
+            document.querySelectorAll('.nav-dropdown.open').forEach(d => {
+                if (d !== dropdown) d.classList.remove('open');
+            });
+            dropdown.classList.toggle('open');
+        });
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function() {
+        document.querySelectorAll('.nav-dropdown.open').forEach(d => {
+            d.classList.remove('open');
+        });
+    });
+    
     // Update cart count
     Store.updateCartCount();
     

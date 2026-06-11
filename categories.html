@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Κατηγορίες - Ο Tee mou</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .categories-page {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .categories-page h1 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .categories-page .subtitle {
+            text-align: center;
+            color: var(--gray-500);
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .categories-grid-page {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card-page {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .category-card-page:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-card-page .cat-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .category-card-page .cat-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .category-card-page:hover .cat-image img {
+            transform: scale(1.08);
+        }
+
+        .category-card-page .cat-image .cat-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,87,34,0.7), rgba(255,23,68,0.5));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+        }
+
+        .cat-overlay .cat-icon {
+            font-size: 56px;
+            margin-bottom: 10px;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .cat-overlay .cat-name {
+            font-size: 24px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .category-card-page .cat-info {
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cat-info .cat-count {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        .cat-info .cat-arrow {
+            font-size: 20px;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .category-card-page:hover .cat-arrow {
+            transform: translateX(5px);
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .categories-grid-page {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 12px;
+            }
+
+            .category-card-page .cat-image {
+                height: 140px;
+            }
+
+            .cat-overlay .cat-icon {
+                font-size: 36px;
+            }
+
+            .cat-overlay .cat-name {
+                font-size: 18px;
+            }
+
+            .categories-page h1 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .categories-grid-page {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .category-card-page .cat-image {
+                height: 110px;
+            }
+
+            .cat-overlay .cat-icon {
+                font-size: 28px;
+                margin-bottom: 5px;
+            }
+
+            .cat-overlay .cat-name {
+                font-size: 14px;
+            }
+
+            .category-card-page .cat-info {
+                padding: 10px 14px;
+            }
+
+            .cat-info .cat-count {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="announcement-bar">🚚 ΔΩΡΕΑΝ ΜΕΤΑΦΟΡΙΚΑ ΓΙΑ ΠΑΡΑΓΓΕΛΙΕΣ ΑΝΩ ΤΩΝ €50</div>
+
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">🛒 Ο Tee mou<span class="logo-sub">ti agorasa pali</span></a>
+            <div class="search-bar">
+                <input type="text" placeholder="Αναζήτησε προϊόντα...">
+                <button onclick="alert('🔍 Βρέθηκαν 1,247 αποτελέσματα!')">🔍 Αναζήτηση</button>
+            </div>
+            <div class="header-actions">
+                <a href="login.html" class="header-btn" id="user-btn">
+                    <span class="icon">👤</span>
+                    <span>Είσοδος</span>
+                </a>
+                <a href="cart.html" class="header-btn">
+                    <span class="icon">🛒</span>
+                    <span>Καλάθι</span>
+                    <span class="cart-count" style="display:none;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">Αρχική</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-btn" id="categories-nav-btn">📂 Κατηγορίες ▾</button>
+                <div class="nav-dropdown-menu">
+                    <a href="all-products.html?category=fashion" data-category="fashion">👗 Μόδα</a>
+                    <a href="all-products.html?category=home" data-category="home">🏠 Σπίτι</a>
+                    <a href="all-products.html?category=tech" data-category="tech">💻 Τεχνολογία</a>
+                    <a href="all-products.html?category=tools" data-category="tools">🔧 Εργαλεία</a>
+                    <a href="all-products.html?category=gadgets" data-category="gadgets">🎮 Gadgets</a>
+                    <a href="all-products.html?category=sports" data-category="sports">🏃 Αθλητικά</a>
+                    <a href="all-products.html?category=beauty" data-category="beauty">💄 Ομορφιά</a>
+                    <a href="all-products.html?category=toys" data-category="toys">🧸 Παιχνίδια</a>
+                </div>
+            </li>
+            <li><a href="all-products.html">Όλα τα Προϊόντα</a></li>
+            <li><a href="categories.html" class="active">📂 Κατηγορίες</a></li>
+        </ul>
+    </nav>
+
+    <div class="categories-page">
+        <h1>📂 Κατηγορίες</h1>
+        <p class="subtitle">Βρες ό,τι ψάχνεις! Από μόδα μέχρι τεχνολογία, όλα σε μία σελίδα.</p>
+        
+        <div class="categories-grid-page" id="categories-page-grid">
+            <div class="loading-spinner"><div class="spinner"></div></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div><h3>🛒 Ο Tee mou</h3><p style="font-size:13px;">Η πιο απίστευτη εμπειρία αγορών!</p></div>
+            <div><h3>Εξυπηρέτηση</h3><ul><li><a href="#support">📞 24/7 Υποστήριξη</a></li><li><a href="mailto:info@teemou.gr">📧 info@teemou.gr</a></li><li><a href="#chat">💬 Live Chat</a></li><li><a href="#faq">❓ Συχνές Ερωτήσεις</a></li></ul></div>
+            <div><h3>Πολιτικές</h3><ul><li><a href="#returns">📦 Πολιτική Επιστροφών</a></li><li><a href="#security">🔒 Ασφάλεια Συναλλαγών</a></li><li><a href="#terms">📋 Όροι Χρήσης</a></li><li><a href="#warranty">🛡️ Εγγύηση 100%</a></li></ul></div>
+            <div><h3>Ακολούθησέ μας</h3><ul><li><a href="https://www.tiktok.com/@teemou" target="_blank" rel="noopener">📱 TikTok: @teemou</a></li><li><a href="https://www.instagram.com/@teemou" target="_blank" rel="noopener">📸 Instagram: @teemou</a></li><li><a href="https://www.youtube.com/@TeeMou" target="_blank" rel="noopener">▶️ YouTube: TeeMou</a></li><li><a href="https://discord.gg/teemou" target="_blank" rel="noopener">💬 Discord: TeeMou</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2026 Ο Tee mou, ti agorasa pali - Ψεύτικο κατάστημα 😉</p></div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/promos.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const grid = document.getElementById('categories-page-grid');
+            
+            grid.innerHTML = categories.map(cat => {
+                // Count products in this category
+                const count = products.filter(p => p.category === cat.id).length;
+                
+                return `
+                    <div class="category-card-page" onclick="window.location.href='all-products.html?category=${cat.id}'">
+                        <div class="cat-image">
+                            <img src="${cat.image}" alt="${cat.name}" loading="lazy">
+                            <div class="cat-overlay">
+                                <div class="cat-icon">${cat.icon}</div>
+                                <div class="cat-name">${cat.name}</div>
+                            </div>
+                        </div>
+                        <div class="cat-info">
+                            <span class="cat-count">${count} προϊόντα</span>
+                            <span class="cat-arrow">→</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        });
+    </script>
+</body>
+</html>
