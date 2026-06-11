@@ -216,6 +216,18 @@ img {
     color: var(--white);
 }
 
+/* Category group in side menu */
+.side-category-group {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.side-category-group .side-sub-list.open {
+    background: var(--gray-100);
+    border-radius: var(--radius-sm);
+    margin: 0 4px 4px 4px;
+}
+
 /* Category sub-list in side menu */
 .side-category-toggle {
     display: flex;
@@ -1360,6 +1372,10 @@ img {
 
 /* === Responsive === */
 @media (max-width: 768px) {
+    .main-nav {
+        display: none;
+    }
+    
     .header-inner {
         flex-wrap: wrap;
     }
