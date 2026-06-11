@@ -7,8 +7,6 @@ function initHamburgerMenu() {
     const hamburger = document.getElementById('hamburger-btn');
     const sideMenu = document.getElementById('side-menu');
     const overlay = document.getElementById('side-overlay');
-    const categoryToggle = document.getElementById('side-category-toggle');
-    const subList = document.getElementById('side-sub-list');
     
     if (!hamburger || !sideMenu || !overlay) return;
     
@@ -24,9 +22,6 @@ function initHamburgerMenu() {
         sideMenu.classList.remove('open');
         overlay.classList.remove('open');
         document.body.style.overflow = '';
-        // Close sub-list too
-        if (categoryToggle) categoryToggle.classList.remove('open');
-        if (subList) subList.classList.remove('open');
     }
     
     hamburger.addEventListener('click', function(e) {
@@ -39,15 +34,6 @@ function initHamburgerMenu() {
     });
     
     overlay.addEventListener('click', closeMenu);
-    
-    // Category toggle in side menu
-    if (categoryToggle && subList) {
-        categoryToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            this.classList.toggle('open');
-            subList.classList.toggle('open');
-        });
-    }
     
     // Close menu when clicking a link
     sideMenu.querySelectorAll('a').forEach(link => {

@@ -216,61 +216,18 @@ img {
     color: var(--white);
 }
 
-/* Category group in side menu */
+/* Category group in side menu - always visible */
 .side-category-group {
     border-radius: var(--radius-sm);
     overflow: hidden;
+    margin-bottom: 4px;
 }
 
-.side-category-group .side-sub-list.open {
+.side-category-group .side-sub-list {
     background: var(--gray-100);
     border-radius: var(--radius-sm);
     margin: 0 4px 4px 4px;
-}
-
-/* Category sub-list in side menu */
-.side-category-toggle {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 16px;
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--gray-700);
-    border-radius: var(--radius-sm);
-    transition: var(--transition);
-    cursor: pointer;
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    font-family: inherit;
-}
-
-.side-category-toggle:hover {
-    background: var(--gray-100);
-    color: var(--primary);
-}
-
-.side-category-toggle .arrow {
-    margin-left: auto;
-    transition: transform 0.3s ease;
-    font-size: 12px;
-}
-
-.side-category-toggle.open .arrow {
-    transform: rotate(180deg);
-}
-
-.side-sub-list {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    padding-left: 12px;
-}
-
-.side-sub-list.open {
-    max-height: 500px;
+    padding: 4px 0;
 }
 
 .side-sub-list a {
